@@ -1,70 +1,140 @@
-# Getting Started with Create React App
+# ReactJS Learning Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple demonstration of how to get started with React JS. It includes setting up a React app, creating functional components, and managing state using hooks. 
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before you can get started with React, you need to have **Node.js** and **npm** (Node Package Manager) installed on your machine.
 
-### `npm start`
+### Install Node.js and npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Go to the official Node.js website: [https://nodejs.org/](https://nodejs.org/)
+2. Download the recommended version of Node.js for your operating system.
+3. Install Node.js by following the installation steps on the website.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+After installation, you can check if Node.js and npm were successfully installed by running the following commands in your terminal:
 
-### `npm test`
+```bash
+node -v
+npm -v
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Install The Project
+```
+npx create-react-app react-functional-components
+```
+### Open The Project
+```
+cd react-functional-components
+```
+### Start Project
+```
+npm start
+```
+### Structure The Project
+```
+my-app/
+├── node_modules/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── package.json
+└── ...
+```
 
-### `npm run build`
+src/App.js: This is where you write the main application component.
+src/index.js: This is the entry point of the application where React connects to the DOM.
+public/index.html: This is the HTML template that React will render into.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Functional Components
+In React, components are the building blocks of the application. Functional Components are simpler components that are written using JavaScript functions. Here's an example of a simple functional component.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Example: App.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+import React from 'react';
+import Greeting from './Greeting';
 
-### `npm run eject`
+function App() {
+  return (
+    <div>
+      <h1>Welcome to React!</h1>
+      <Greeting name="John" />
+      <Greeting name="Jane" />
+    </div>
+  );
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+export default App;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Example: Greeting.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+import React from 'react';
 
-## Learn More
+function Greeting(props) {
+  return <h2>Hello, {props.name}!</h2>;
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default Greeting;
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
+How it works:
+App.js imports and uses the Greeting component, passing a name prop to it.
+Greeting.js renders a simple message using the name prop.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Managing State in Functional Components
 
-### Analyzing the Bundle Size
+React allows you to manage state within functional components using hooks. The most common hook is useState.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Example: Adding State to Greeting.js
 
-### Making a Progressive Web App
+```
+import React, { useState } from 'react';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+function Greeting(props) {
+  const [message, setMessage] = useState("Welcome!");
 
-### Advanced Configuration
+  const changeMessage = () => {
+    setMessage("Message has been changed!");
+  };
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  return (
+    <div>
+      <h2>{props.name}, {message}</h2>
+      <button onClick={changeMessage}>Change Message</button>
+    </div>
+  );
+}
 
-### Deployment
+export default Greeting;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
 
-### `npm run build` fails to minify
+How it works:
+We use the useState hook to create a message state variable and a setMessage function to update the state.
+When the user clicks the "Change Message" button, the changeMessage function updates the message state, and React re-renders the component with the new state.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Explain
+
+---
+
+- **Prerequisites**: Menyebutkan kebutuhan dasar untuk menjalankan React, yaitu Node.js dan npm.
+- **Setting up React**: Langkah-langkah mulai dari instalasi hingga menjalankan aplikasi.
+- **Project Structure**: Menjelaskan struktur folder yang dibuat oleh Create React App.
+- **Functional Components**: Memberikan contoh bagaimana membuat komponen fungsional dan menjelaskan cara kerja prop dan komponen dalam React.
+- **Managing State**: Menunjukkan cara menggunakan `useState` hook untuk mengelola state dalam komponen fungsional.
+- **Running the Application**: Menyediakan instruksi untuk menjalankan aplikasi dan melihatnya di browser.
+
+
+### Author
+**Adjis Ramadhani Utomo**
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
